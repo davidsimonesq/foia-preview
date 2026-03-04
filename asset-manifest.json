@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/foia-preview/static/css/main.76991406.css",
+    "main.js": "/foia-preview/static/js/main.2dc483b7.js",
+    "index.html": "/foia-preview/index.html",
+    "main.76991406.css.map": "/foia-preview/static/css/main.76991406.css.map",
+    "main.2dc483b7.js.map": "/foia-preview/static/js/main.2dc483b7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.76991406.css",
+    "static/js/main.2dc483b7.js"
+  ]
+}
