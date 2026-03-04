@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/foia-preview/static/css/main.76991406.css",
-    "main.js": "/foia-preview/static/js/main.ecac0f92.js",
+    "main.js": "/foia-preview/static/js/main.cfa1c6ab.js",
     "index.html": "/foia-preview/index.html",
     "main.76991406.css.map": "/foia-preview/static/css/main.76991406.css.map",
-    "main.ecac0f92.js.map": "/foia-preview/static/js/main.ecac0f92.js.map"
+    "main.cfa1c6ab.js.map": "/foia-preview/static/js/main.cfa1c6ab.js.map"
   },
   "entrypoints": [
     "static/css/main.76991406.css",
-    "static/js/main.ecac0f92.js"
+    "static/js/main.cfa1c6ab.js"
   ]
 }
