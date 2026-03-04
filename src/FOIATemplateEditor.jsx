@@ -2,30 +2,48 @@ import { useState } from "react";
 import agencyData from "./foia-sample-data.json";
 
 const DEFAULT_TEMPLATE_TEXT = `{{today_date}}
+
 {{agency_name}}
 {{#if agency_foia_officer}}{{agency_foia_officer}}
 FOIA Officer{{/if}}
 {{#if agency_address}}{{agency_address_line1}}
 {{#if agency_address_line2}}{{agency_address_line2}}{{/if}}
 {{agency_city}}, {{agency_state}} {{agency_postal_code}}{{/if}}
+
 Re: Freedom of Information Act Request
+
 Dear FOIA Officer:
+
 Pursuant to the federal Freedom of Information Act, 5 U.S.C. § 552, I request access to and copies of the following records:
+
 {{description}}
+
 {{#if preferred_format}}I would prefer to receive these records in {{preferred_format}} format if available.{{/if}}
+
 I am making this request as {{#if fee_category}}{{fee_category}}{{else}}an individual seeking information for personal use and not for a commercial use{{/if}}.
+
 {{#if fee_waiver_justification}}I request a waiver of all fees for this request. {{fee_waiver_justification}} Disclosure of the requested information to me is in the public interest because it is likely to contribute significantly to public understanding of the operations or activities of the government and is not primarily in my commercial interest.{{/if}}
+
+
 As provided in 5 U.S.C. § 552(a)(6)(A)(i), please respond to this request within 20 business days.
+
+
 If you deny all or any part of this request, please cite the specific FOIA exemption(s) you believe justifies your refusal to release the information. Please provide all segregable portions of otherwise exempt records. I reserve the right to appeal your decision to deny any portion of my request.
+
 Please send all responsive records and correspondence to:
+
 {{ungovr_email}}
+
 Thank you for your assistance.
+
 Sincerely,
+
 {{#if requester_name}}{{requester_name}}
 {{#if requester_address_line1}}{{requester_address_line1}}
 {{#if requester_address_line2}}{{requester_address_line2}}{{/if}}
 {{requester_city}}, {{requester_state}} {{requester_postal_code}}{{/if}}
-{{#if requester_phone}}{{requester_phone}}{{/if}}{{else}}A member of the public{{/if}}
+{{#if requester_phone}}{{requester_phone}}{{/if}}
+{{else}}A member of the public{{/if}}
 Email: {{ungovr_email}}`;
 
 const DEFAULT_NOTES = "Standard FOIA request letter for federal agencies. Includes fee category declaration and optional fee waiver language.";
@@ -44,6 +62,7 @@ function buildContext(agencyEntry) {
   return {
     ...agencyData.request_defaults,
     ...agencyEntry.agency,
+    today_date: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
   };
 }
 
@@ -55,18 +74,20 @@ function renderTemplate(template, data) {
   // until all layers of nesting are resolved
   do {
     prev = result;
-    // {{#if}}...{{else}}...{{/if}} — innermost only
+    // {{#if}}...{{else}}...{{/if}} — innermost only (no nested {{#if}} or {{/if}} in either branch)
     result = result.replace(
-      /\{\{#if (\w+)\}\}((?:(?!\{\{#if )[\s\S])*?)\{\{else\}\}((?:(?!\{\{#if )[\s\S])*?)\{\{\/if\}\}/g,
+      /\{\{#if (\w+)\}\}((?:(?!\{\{(?:#if |\/if\}\}))[\s\S])*?)\{\{else\}\}((?:(?!\{\{(?:#if |\/if\}\}))[\s\S])*?)\{\{\/if\}\}/g,
       (_, key, ifBlock, elseBlock) => (data[key] ? ifBlock : elseBlock)
     );
     // {{#if}}...{{/if}} without else — innermost only
     result = result.replace(
-      /\{\{#if (\w+)\}\}((?:(?!\{\{#if )[\s\S])*?)\{\{\/if\}\}/g,
-      (_, key, block) => (data[key] ? block : "")
+      /\{\{#if (\w+)\}\}((?:(?!\{\{#if )[\s\S])*?)\{\{\/if\}\}(\n?)/g,
+      (_, key, block, nl) => (data[key] ? block + nl : "")
     );
   } while (result !== prev);
 
+  // Clean up empty lines left by resolved conditionals
+  result = result.replace(/\n{3,}/g, "\n\n");
   // Replace variables
   result = result.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] || "");
   // Remove lines that are empty or only whitespace/punctuation after substitution
@@ -82,7 +103,7 @@ function toParagraphs(text) {
 }
 
 const sans = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif";
-const mono = "'Courier New', 'Lucida Console', monospace";
+const mono = "'Monaco', 'Courier New', monospace";
 const brand = "#265d9d";
 
 const color = {
@@ -95,7 +116,7 @@ const color = {
 const s = {
   page: { fontFamily: sans, maxWidth: 860, margin: "0 auto", padding: "28px 24px 48px", backgroundColor: "#fff", color: color.gray700 },
   row: { display: "flex", alignItems: "flex-start", justifyContent: "space-between" },
-  title: { fontSize: 26, fontWeight: 700, color: brand, margin: 0, lineHeight: 1.2 },
+  title: { fontSize: 24, fontWeight: 700, color: brand, margin: 0, lineHeight: 1.2 },
   subtitle: { fontSize: 13, color: color.gray500, margin: "4px 0 0" },
   saveBtn: (saved) => ({ backgroundColor: saved ? color.green : brand, color: "#fff", border: "none", borderRadius: 6, padding: "9px 20px", fontWeight: 600, fontSize: 14, cursor: "pointer", fontFamily: sans, transition: "background-color 0.2s" }),
   divider: { border: "none", borderTop: `1px solid ${color.gray200}`, margin: "16px 0" },
@@ -113,13 +134,13 @@ const s = {
   fieldGroup: { marginBottom: 22 },
   fieldLabel: { display: "block", color: brand, fontWeight: 600, marginBottom: 8, fontSize: 15 },
   input: { width: "100%", padding: "10px 12px", border: `1px solid ${color.gray300}`, borderRadius: 6, fontSize: 14, color: color.gray700, boxSizing: "border-box", outline: "none", fontFamily: sans },
-  textarea: { width: "100%", padding: "10px 12px", border: `1px solid ${color.gray300}`, borderRadius: 6, fontSize: 13, fontFamily: mono, color: color.gray700, boxSizing: "border-box", resize: "vertical", outline: "none", lineHeight: 1.65 },
+  textarea: { width: "100%", padding: "10px 12px", border: `1px solid ${color.gray300}`, borderRadius: 6, fontSize: "0.875rem", fontFamily: mono, color: color.gray700, boxSizing: "border-box", resize: "vertical", outline: "none", lineHeight: 1.6 },
   hint: { borderLeft: `4px solid ${color.blueBorder}`, backgroundColor: color.blueLight, padding: "10px 14px", marginBottom: 24, borderRadius: "0 6px 6px 0", fontSize: 13, color: color.gray700, lineHeight: 1.5 },
   hintVar: { color: brand, fontWeight: 500, fontFamily: mono },
 
   // Preview
   previewHeader: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 },
-  previewHeading: { fontSize: 20, fontWeight: 700, color: color.gray900, margin: 0 },
+  previewHeading: { fontSize: 18, fontWeight: 700, color: color.gray900, margin: 0 },
   agencyPickerWrap: { display: "flex", alignItems: "center", gap: 10 },
   agencyPickerLabel: { fontSize: 13, color: color.gray500, whiteSpace: "nowrap" },
   agencyPicker: { padding: "6px 10px", border: `1px solid ${color.gray300}`, borderRadius: 6, fontSize: 13, color: color.gray700, fontFamily: sans, outline: "none", cursor: "pointer", backgroundColor: "#fff" },
@@ -127,7 +148,7 @@ const s = {
   navBtn: { background: "none", border: `1px solid ${color.gray300}`, borderRadius: 4, padding: "4px 10px", cursor: "pointer", fontSize: 16, color: color.gray600, lineHeight: 1, fontFamily: sans },
   agencyCount: { fontSize: 12, color: color.gray400, minWidth: 40, textAlign: "center" },
   previewBox: { border: `1px solid ${color.gray200}`, borderRadius: 6, padding: "32px 36px", fontFamily: sans, fontSize: 14, color: color.gray700, backgroundColor: "#fff", maxHeight: 560, overflowY: "auto" },
-  previewPara: { margin: "0 0 10px 0", lineHeight: 1.5 },
+  previewPara: { margin: "0 0 14px 0", lineHeight: 1.4 },
   previewLine: { display: "block" },
   submissionBox: { marginTop: 20, border: `1px solid ${color.gray200}`, borderRadius: 6, padding: "14px 18px", backgroundColor: color.gray50, fontSize: 13, color: color.gray700 },
   submissionTitle: { fontWeight: 600, marginBottom: 8, color: color.gray900 },
@@ -238,28 +259,15 @@ export default function FOIATemplateEditor() {
             <div style={s.previewHeading}>Preview with Sample Data</div>
             <div style={s.agencyPickerWrap}>
               <span style={s.agencyPickerLabel}>Agency:</span>
-              <div style={s.agencyNav}>
-                <button
-                  style={s.navBtn}
-                  onClick={() => setAgencyIndex((i) => Math.max(0, i - 1))}
-                  disabled={agencyIndex === 0}
-                >‹</button>
-                <select
-                  style={s.agencyPicker}
-                  value={agencyIndex}
-                  onChange={(e) => setAgencyIndex(Number(e.target.value))}
-                >
-                  {agencies.map((a, i) => (
-                    <option key={a._id} value={i}>{a.agency.agency_name}</option>
-                  ))}
-                </select>
-                <button
-                  style={s.navBtn}
-                  onClick={() => setAgencyIndex((i) => Math.min(agencies.length - 1, i + 1))}
-                  disabled={agencyIndex === agencies.length - 1}
-                >›</button>
-              </div>
-              <span style={s.agencyCount}>{agencyIndex + 1} / {agencies.length}</span>
+              <select
+                style={s.agencyPicker}
+                value={agencyIndex}
+                onChange={(e) => setAgencyIndex(Number(e.target.value))}
+              >
+                {agencies.map((a, i) => (
+                  <option key={a._id} value={i}>{a.agency.agency_name}</option>
+                ))}
+              </select>
             </div>
           </div>
 

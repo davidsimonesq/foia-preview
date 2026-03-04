@@ -210,17 +210,17 @@
 
   "request_defaults": {
     "today_date": "February 7, 2026",
-    "description": "",
+    "description": "All FOIA request response logs for the previous quarter (October 1, 2025, through December 31, 2025), including but not limited to: the date each request was received, the requester's name or tracking number, a summary or description of the records requested, the date of the agency's response, the disposition of each request (e.g., full grant, partial grant, full denial, referral, withdrawal), any FOIA exemptions cited in partial or full denials, and the number of pages or records released, withheld, or referred.",
     "preferred_format": "electronic PDF",
     "fee_category": "",
     "fee_waiver_justification": "This request is made in the public interest to promote government transparency and accountability.",
-    "requester_name": "",
+    "requester_name": "David Simon",
     "requester_address_line1": "",
     "requester_address_line2": "",
     "requester_city": "",
     "requester_state": "",
     "requester_postal_code": "",
     "requester_phone": "",
-    "ungovr_email": ""
+    "ungovr_email": "david@ungovr.org"
   }
 }
