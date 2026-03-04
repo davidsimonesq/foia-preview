@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import agencyData from "./foia-sample-data.json";
 
 const DEFAULT_TEMPLATE_TEXT = `{{today_date}}
@@ -164,16 +164,31 @@ export default function FOIATemplateEditor() {
   const [templateText, setTemplateText] = useState(DEFAULT_TEMPLATE_TEXT);
   const [notes, setNotes] = useState(DEFAULT_NOTES);
   const [saved, setSaved] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [agencyIndex, setAgencyIndex] = useState(0);
+  const [previewText, setPreviewText] = useState("");
 
   const agencies = agencyData.agencies;
   const selectedAgency = agencies[agencyIndex];
   const context = buildContext(selectedAgency);
-  const paragraphs = toParagraphs(renderTemplate(templateText, context));
+  const renderedText = renderTemplate(templateText, context);
+  const paragraphs = toParagraphs(renderedText);
+
+  // Regenerate preview text when agency or template changes
+  useEffect(() => {
+    setPreviewText(renderedText);
+  }, [renderedText]);
 
   const handleSave = () => {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(previewText).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
   };
 
   return (
@@ -184,9 +199,15 @@ export default function FOIATemplateEditor() {
           <h1 style={s.title}>Freedom of Information Act</h1>
           <p style={s.subtitle}>us/federal</p>
         </div>
-        <button style={s.saveBtn(saved)} onClick={handleSave}>
-          {saved ? "✓ Saved" : "Save Changes"}
-        </button>
+        {activeTab === "preview" ? (
+          <button style={s.saveBtn(copied)} onClick={handleCopy}>
+            {copied ? "✓ Copied" : "Copy to Clipboard"}
+          </button>
+        ) : (
+          <button style={s.saveBtn(saved)} onClick={handleSave}>
+            {saved ? "✓ Saved" : "Save Changes"}
+          </button>
+        )}
       </div>
 
       <hr style={s.divider} />
@@ -289,16 +310,12 @@ export default function FOIATemplateEditor() {
             </div>
           </div>
 
-          {/* Rendered letter */}
-          <div style={s.previewBox}>
-            {paragraphs.map((lines, i) => (
-              <p key={i} style={s.previewPara}>
-                {lines.map((line, j) => (
-                  <span key={j} style={s.previewLine}>{line}</span>
-                ))}
-              </p>
-            ))}
-          </div>
+          {/* Editable rendered letter */}
+          <textarea
+            style={{ ...s.previewBox, fontFamily: sans, fontSize: 14, lineHeight: 1.6, minHeight: 480, resize: "vertical", whiteSpace: "pre-wrap" }}
+            value={previewText}
+            onChange={(e) => setPreviewText(e.target.value)}
+          />
 
           {/* Submission details for selected agency */}
           <div style={s.submissionBox}>
