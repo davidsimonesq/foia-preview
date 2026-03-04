@@ -1,0 +1,226 @@
+{
+  "_comment": "Sample data for FOIATemplateEditor. Each agency entry contains all template variables. Empty strings suppress conditional {{#if}} blocks. Sourced from i-Resist agency data.",
+
+  "meta": {
+    "template": "Standard FOIA Request",
+    "jurisdiction": "us/federal",
+    "language": "en"
+  },
+
+  "agencies": [
+    {
+      "_id": "dhs",
+      "agency": {
+        "agency_name": "Department of Homeland Security (DHS)",
+        "agency_foia_officer": "",
+        "agency_address": "true",
+        "agency_address_line1": "245 Murray Lane SW, STOP-0655",
+        "agency_address_line2": "",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20528-0655"
+      },
+      "submission": {
+        "portal_url": "https://www.dhs.gov/foia",
+        "email": "",
+        "guidelines": "DHS requires electronic submission only. Email submissions are no longer accepted as of January 2026. Submit via the DHS FOIA portal or through FOIA.gov."
+      }
+    },
+    {
+      "_id": "doj",
+      "agency": {
+        "agency_name": "Department of Justice (DOJ)",
+        "agency_foia_officer": "",
+        "agency_address": "true",
+        "agency_address_line1": "Office of Information Policy (OIP)",
+        "agency_address_line2": "441 G Street NW, Suite 6060",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20530"
+      },
+      "submission": {
+        "portal_url": "https://www.justice.gov/oip/submit-and-track-request-or-appeal",
+        "email": "",
+        "guidelines": "DOJ encourages use of its online FOIA portal for submission and tracking. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "fbi",
+      "agency": {
+        "agency_name": "Federal Bureau of Investigation (FBI)",
+        "agency_foia_officer": "FOIA/PA Request",
+        "agency_address": "true",
+        "agency_address_line1": "Record/Information Dissemination Section",
+        "agency_address_line2": "170 Marcel Drive",
+        "agency_city": "Winchester",
+        "agency_state": "VA",
+        "agency_postal_code": "22602-4843"
+      },
+      "submission": {
+        "portal_url": "https://vault.fbi.gov/fdps-1/efoia",
+        "email": "",
+        "guidelines": "FBI accepts requests through its eFOIA portal. Include as much detail as possible about the records sought. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "ice",
+      "agency": {
+        "agency_name": "Immigration and Customs Enforcement (ICE)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "500 12th Street SW, Stop 5009",
+        "agency_address_line2": "",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20536-5009"
+      },
+      "submission": {
+        "portal_url": "https://www.ice.gov/foia",
+        "email": "",
+        "guidelines": "ICE accepts FOIA requests through its online portal. Specify the ICE office or program area if known. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "cbp",
+      "agency": {
+        "agency_name": "Customs and Border Protection (CBP)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "90 K Street NE, 9th Floor",
+        "agency_address_line2": "",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20229"
+      },
+      "submission": {
+        "portal_url": "https://www.cbp.gov/site-policy-notices/foia",
+        "email": "",
+        "guidelines": "CBP accepts FOIA requests through its online portal. Include relevant dates, ports of entry, or program names if applicable. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "state",
+      "agency": {
+        "agency_name": "Department of State",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "Office of Information Programs and Services",
+        "agency_address_line2": "SA-2, Department of State",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20522-8100"
+      },
+      "submission": {
+        "portal_url": "https://foia.state.gov/",
+        "email": "",
+        "guidelines": "The State Department accepts requests through its FOIA portal. Processing times vary; complex requests may take longer. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "epa",
+      "agency": {
+        "agency_name": "Environmental Protection Agency (EPA)",
+        "agency_foia_officer": "FOIA Public Liaison",
+        "agency_address": "true",
+        "agency_address_line1": "Office of Mission Support",
+        "agency_address_line2": "1200 Pennsylvania Avenue NW, Mail Code 2822T",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20460"
+      },
+      "submission": {
+        "portal_url": "https://www.epa.gov/foia",
+        "email": "",
+        "guidelines": "EPA accepts FOIA requests through FOIAonline or FOIA.gov. Specify the EPA office, region, or program if known."
+      }
+    },
+    {
+      "_id": "hhs",
+      "agency": {
+        "agency_name": "Department of Health and Human Services (HHS)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "330 Independence Avenue SW, Suite 729H",
+        "agency_address_line2": "",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20201"
+      },
+      "submission": {
+        "portal_url": "https://www.hhs.gov/foia/",
+        "email": "",
+        "guidelines": "HHS accepts requests through its FOIA portal. For specific agencies within HHS (e.g., CDC, FDA, NIH), direct your request to the appropriate sub-agency. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "ed",
+      "agency": {
+        "agency_name": "Department of Education",
+        "agency_foia_officer": "FOIA Service Center",
+        "agency_address": "true",
+        "agency_address_line1": "400 Maryland Avenue SW",
+        "agency_address_line2": "",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20202"
+      },
+      "submission": {
+        "portal_url": "https://www2.ed.gov/policy/gen/leg/foia/",
+        "email": "",
+        "guidelines": "The Department of Education accepts FOIA requests by mail or through FOIA.gov. Include specific program names or offices when possible."
+      }
+    },
+    {
+      "_id": "omb",
+      "agency": {
+        "agency_name": "Office of Management and Budget (OMB)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "725 17th Street NW",
+        "agency_address_line2": "",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20503"
+      },
+      "submission": {
+        "portal_url": "https://www.whitehouse.gov/omb/foia/",
+        "email": "foia@omb.eop.gov",
+        "guidelines": "OMB requires requests to specify date ranges and describe records with reasonable detail. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "usds",
+      "agency": {
+        "agency_name": "U.S. DOGE Service (USDS)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "Executive Office of the President",
+        "agency_address_line2": "725 17th Street NW",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20503"
+      },
+      "submission": {
+        "portal_url": "https://www.whitehouse.gov/foia/",
+        "email": "",
+        "guidelines": "The U.S. DOGE Service is subject to FOIA per federal court rulings. Submit requests through the Executive Office of the President FOIA portal or via FOIA.gov."
+      }
+    }
+  ],
+
+  "request_defaults": {
+    "today_date": "February 7, 2026",
+    "description": "",
+    "preferred_format": "electronic PDF",
+    "fee_category": "",
+    "fee_waiver_justification": "This request is made in the public interest to promote government transparency and accountability.",
+    "requester_name": "",
+    "requester_address_line1": "",
+    "requester_address_line2": "",
+    "requester_city": "",
+    "requester_state": "",
+    "requester_postal_code": "",
+    "requester_phone": "",
+    "ungovr_email": ""
+  }
+}
