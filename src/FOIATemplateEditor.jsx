@@ -312,7 +312,7 @@ export default function FOIATemplateEditor() {
 
           {/* Editable rendered letter */}
           <textarea
-            style={{ ...s.previewBox, fontFamily: sans, fontSize: 14, lineHeight: 1.6, minHeight: 480, resize: "vertical", whiteSpace: "pre-wrap" }}
+            style={{ ...s.previewBox, width: "100%", boxSizing: "border-box", fontFamily: sans, fontSize: 14, lineHeight: 1.6, minHeight: 480, resize: "vertical", whiteSpace: "pre-wrap" }}
             value={previewText}
             onChange={(e) => setPreviewText(e.target.value)}
           />
