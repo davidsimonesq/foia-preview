@@ -280,7 +280,7 @@ export default function FOIATemplateEditor() {
       {activeTab === "preview" && (
         <>
           <div style={s.previewHeader}>
-            <div style={s.previewHeading}>Request Preview</div>
+            <div style={s.previewHeading}>Preview Your Request</div>
             <div style={s.agencyPickerWrap}>
               <span style={s.agencyPickerLabel}>Agency:</span>
               <select
