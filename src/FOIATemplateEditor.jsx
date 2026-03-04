@@ -4,8 +4,7 @@ import agencyData from "./foia-sample-data.json";
 const DEFAULT_TEMPLATE_TEXT = `{{today_date}}
 
 {{agency_name}}
-{{#if agency_foia_officer}}{{agency_foia_officer}}
-FOIA Officer{{/if}}
+{{#if agency_foia_officer}}{{agency_foia_officer}}{{/if}}
 {{#if agency_address}}{{agency_address_line1}}
 {{#if agency_address_line2}}{{agency_address_line2}}{{/if}}
 {{agency_city}}, {{agency_state}} {{agency_postal_code}}{{/if}}
@@ -20,15 +19,15 @@ Pursuant to the federal Freedom of Information Act, 5 U.S.C. § 552, I request a
 
 {{#if preferred_format}}I would prefer to receive these records in {{preferred_format}} format if available.{{/if}}
 
-I am making this request as {{#if fee_category}}{{fee_category}}{{else}}an individual seeking information for personal use and not for a commercial use{{/if}}.
+I am making this request as {{#if fee_category}}{{fee_category}}{{else}}a representative of the news media, as defined under 5 U.S.C. § 552(a)(4)(A)(ii)(II). The information requested will be used to inform the public through publication on ungovr.org. As such, only duplication fees should apply{{/if}}.
 
-{{#if fee_waiver_justification}}I request a waiver of all fees for this request. {{fee_waiver_justification}} Disclosure of the requested information to me is in the public interest because it is likely to contribute significantly to public understanding of the operations or activities of the government and is not primarily in my commercial interest.{{/if}}
+{{#if fee_waiver_justification}}I request a waiver of all fees for this request. {{fee_waiver_justification}} Disclosure of the requested information to me is in the public interest because it is likely to contribute significantly to public understanding of the operations or activities of the government and is not primarily in my commercial interest. I intend to make the results of this request publicly available through ungovr.org.{{/if}}
 
-
-As provided in 5 U.S.C. § 552(a)(6)(A)(i), please respond to this request within 20 business days.
-
+{{#if fee_cap}}If my fee waiver request is denied and fees would exceed {{fee_cap}}, please notify me before proceeding.{{/if}}
 
 If you deny all or any part of this request, please cite the specific FOIA exemption(s) you believe justifies your refusal to release the information. Please provide all segregable portions of otherwise exempt records. I reserve the right to appeal your decision to deny any portion of my request.
+
+I am willing to accept records on a rolling basis as they are processed. I am happy to discuss the scope of this request to expedite processing.
 
 Please send all responsive records and correspondence to:
 
@@ -46,7 +45,7 @@ Sincerely,
 {{else}}A member of the public{{/if}}
 Email: {{ungovr_email}}`;
 
-const DEFAULT_NOTES = "Standard FOIA request letter for federal agencies. Includes fee category declaration and optional fee waiver language.";
+const DEFAULT_NOTES = "Standard FOIA request template for U.S. federal agencies. Generates a complete request with agency-specific addressing, records description with component-level scoping, news media fee category declaration, fee waiver justification, and rolling production language. Supports 19 agencies across DHS, HHS, and standalone departments.";
 const METADATA = { type: "standard", language: "en", variables: "4 core, 6 conditional" };
 const RESOURCE_LINKS = [
   { label: "RCFP FOIA Letter Generator", href: "https://www.rcfp.org/foia-letter-generator/" },
@@ -59,11 +58,15 @@ const HINT_VARIABLES = ["{{today_date}}", "{{agency_name}}", "{{description}}", 
 
 // Flatten agency + request_defaults into a single template context
 function buildContext(agencyEntry) {
-  return {
+  const ctx = {
     ...agencyData.request_defaults,
     ...agencyEntry.agency,
     today_date: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
   };
+  if (agencyEntry.description_scope) {
+    ctx.description = ctx.description.replace("{{description_scope}}", agencyEntry.description_scope);
+  }
+  return ctx;
 }
 
 function renderTemplate(template, data) {
@@ -256,7 +259,7 @@ export default function FOIATemplateEditor() {
       {activeTab === "preview" && (
         <>
           <div style={s.previewHeader}>
-            <div style={s.previewHeading}>Preview with Sample Data</div>
+            <div style={s.previewHeading}>Request Preview</div>
             <div style={s.agencyPickerWrap}>
               <span style={s.agencyPickerLabel}>Agency:</span>
               <select
@@ -264,9 +267,24 @@ export default function FOIATemplateEditor() {
                 value={agencyIndex}
                 onChange={(e) => setAgencyIndex(Number(e.target.value))}
               >
-                {agencies.map((a, i) => (
-                  <option key={a._id} value={i}>{a.agency.agency_name}</option>
-                ))}
+                {agencies.map((a, i) => {
+                  // Skip children — they're rendered inside their parent's optgroup
+                  if (a.parent_id) return null;
+                  const children = agencies
+                    .map((c, ci) => ({ entry: c, index: ci }))
+                    .filter((c) => c.entry.parent_id === a._id);
+                  if (children.length === 0) {
+                    return <option key={a._id} value={i}>{a.agency.agency_name}</option>;
+                  }
+                  return (
+                    <optgroup key={a._id} label={a.agency.agency_name}>
+                      <option value={i}>{a.agency.agency_name} (Headquarters)</option>
+                      {children.map((c) => (
+                        <option key={c.entry._id} value={c.index}>{c.entry.agency.agency_name}</option>
+                      ))}
+                    </optgroup>
+                  );
+                })}
               </select>
             </div>
           </div>

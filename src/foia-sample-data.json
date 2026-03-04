@@ -10,6 +10,8 @@
   "agencies": [
     {
       "_id": "dhs",
+      "parent_id": null,
+      "description_scope": "This request encompasses headquarters-level records maintained by the Office of the Secretary and central management offices of the Department of Homeland Security.",
       "agency": {
         "agency_name": "Department of Homeland Security (DHS)",
         "agency_foia_officer": "",
@@ -27,7 +29,149 @@
       }
     },
     {
+      "_id": "ice",
+      "parent_id": "dhs",
+      "description_scope": "This request encompasses records maintained by U.S. Immigration and Customs Enforcement (ICE), a component of the Department of Homeland Security.",
+      "agency": {
+        "agency_name": "Immigration and Customs Enforcement (ICE)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "500 12th Street SW, Stop 5009",
+        "agency_address_line2": "",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20536-5009"
+      },
+      "submission": {
+        "portal_url": "https://www.ice.gov/foia",
+        "email": "ice-foia@ice.dhs.gov",
+        "guidelines": "ICE accepts FOIA requests through its online portal. Specify the ICE office or program area if known. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "cbp",
+      "parent_id": "dhs",
+      "description_scope": "This request encompasses records maintained by U.S. Customs and Border Protection (CBP), a component of the Department of Homeland Security.",
+      "agency": {
+        "agency_name": "Customs and Border Protection (CBP)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "90 K Street NE, 9th Floor",
+        "agency_address_line2": "",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20229"
+      },
+      "submission": {
+        "portal_url": "https://securerelease.us/",
+        "email": "",
+        "guidelines": "As of January 2026, CBP requires submission through its SecureRelease portal or FOIA.gov. Mail, fax, and email submissions are no longer accepted. Include relevant dates, ports of entry, or program names if applicable."
+      }
+    },
+    {
+      "_id": "tsa",
+      "parent_id": "dhs",
+      "description_scope": "This request encompasses records maintained by the Transportation Security Administration (TSA), a component of the Department of Homeland Security.",
+      "agency": {
+        "agency_name": "Transportation Security Administration (TSA)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "601 South 12th Street",
+        "agency_address_line2": "TSA-20, East Tower",
+        "agency_city": "Arlington",
+        "agency_state": "VA",
+        "agency_postal_code": "20598-6020"
+      },
+      "submission": {
+        "portal_url": "https://www.tsa.gov/foia",
+        "email": "",
+        "guidelines": "TSA accepts FOIA requests through the DHS FOIA portal or by mail. Include specific screening incidents, dates, or program names if applicable. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "uscis",
+      "parent_id": "dhs",
+      "description_scope": "This request encompasses records maintained by U.S. Citizenship and Immigration Services (USCIS), a component of the Department of Homeland Security.",
+      "agency": {
+        "agency_name": "U.S. Citizenship and Immigration Services (USCIS)",
+        "agency_foia_officer": "FOIA/PA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "National Records Center, FOIA/PA Office",
+        "agency_address_line2": "P.O. Box 648010",
+        "agency_city": "Lee's Summit",
+        "agency_state": "MO",
+        "agency_postal_code": "64064-8010"
+      },
+      "submission": {
+        "portal_url": "https://first.uscis.gov/",
+        "email": "",
+        "guidelines": "USCIS accepts FOIA requests through its FIRST online portal. For immigration records, include A-numbers or receipt numbers if available. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "secret_service",
+      "parent_id": "dhs",
+      "description_scope": "This request encompasses records maintained by the U.S. Secret Service, a component of the Department of Homeland Security.",
+      "agency": {
+        "agency_name": "U.S. Secret Service",
+        "agency_foia_officer": "FOIA/PA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "245 Murray Lane SW",
+        "agency_address_line2": "Building T-5",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20223"
+      },
+      "submission": {
+        "portal_url": "https://www.secretservice.gov/foia",
+        "email": "",
+        "guidelines": "The Secret Service accepts FOIA requests by mail or through FOIA.gov. Include specific dates, events, or case numbers if known."
+      }
+    },
+    {
+      "_id": "fema",
+      "parent_id": "dhs",
+      "description_scope": "This request encompasses records maintained by the Federal Emergency Management Agency (FEMA), a component of the Department of Homeland Security.",
+      "agency": {
+        "agency_name": "Federal Emergency Management Agency (FEMA)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "500 C Street SW, Room 501",
+        "agency_address_line2": "",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20472-3100"
+      },
+      "submission": {
+        "portal_url": "https://www.fema.gov/foia",
+        "email": "",
+        "guidelines": "FEMA accepts FOIA requests through the DHS FOIA portal or by mail. Specify the disaster number, program, or region if applicable. You may also submit via FOIA.gov."
+      }
+    },
+    {
+      "_id": "uscg",
+      "parent_id": "dhs",
+      "description_scope": "This request encompasses records maintained by the U.S. Coast Guard, a component of the Department of Homeland Security.",
+      "agency": {
+        "agency_name": "U.S. Coast Guard",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "Commandant (CG-611)",
+        "agency_address_line2": "2703 Martin Luther King Jr. Avenue SE",
+        "agency_city": "Washington",
+        "agency_state": "DC",
+        "agency_postal_code": "20593-7213"
+      },
+      "submission": {
+        "portal_url": "https://www.dcms.uscg.mil/foia/",
+        "email": "efoia@uscg.mil",
+        "guidelines": "The Coast Guard accepts FOIA requests by mail, through the DHS FOIA portal, or via FOIA.gov. Include vessel names, dates, or district information if applicable."
+      }
+    },
+    {
       "_id": "doj",
+      "parent_id": null,
+      "description_scope": "This request encompasses records maintained by all offices of the Department of Justice.",
       "agency": {
         "agency_name": "Department of Justice (DOJ)",
         "agency_foia_officer": "",
@@ -46,6 +190,8 @@
     },
     {
       "_id": "fbi",
+      "parent_id": null,
+      "description_scope": "This request encompasses records maintained by all offices of the Federal Bureau of Investigation.",
       "agency": {
         "agency_name": "Federal Bureau of Investigation (FBI)",
         "agency_foia_officer": "FOIA/PA Request",
@@ -63,43 +209,9 @@
       }
     },
     {
-      "_id": "ice",
-      "agency": {
-        "agency_name": "Immigration and Customs Enforcement (ICE)",
-        "agency_foia_officer": "FOIA Officer",
-        "agency_address": "true",
-        "agency_address_line1": "500 12th Street SW, Stop 5009",
-        "agency_address_line2": "",
-        "agency_city": "Washington",
-        "agency_state": "DC",
-        "agency_postal_code": "20536-5009"
-      },
-      "submission": {
-        "portal_url": "https://www.ice.gov/foia",
-        "email": "",
-        "guidelines": "ICE accepts FOIA requests through its online portal. Specify the ICE office or program area if known. You may also submit via FOIA.gov."
-      }
-    },
-    {
-      "_id": "cbp",
-      "agency": {
-        "agency_name": "Customs and Border Protection (CBP)",
-        "agency_foia_officer": "FOIA Officer",
-        "agency_address": "true",
-        "agency_address_line1": "90 K Street NE, 9th Floor",
-        "agency_address_line2": "",
-        "agency_city": "Washington",
-        "agency_state": "DC",
-        "agency_postal_code": "20229"
-      },
-      "submission": {
-        "portal_url": "https://www.cbp.gov/site-policy-notices/foia",
-        "email": "",
-        "guidelines": "CBP accepts FOIA requests through its online portal. Include relevant dates, ports of entry, or program names if applicable. You may also submit via FOIA.gov."
-      }
-    },
-    {
       "_id": "state",
+      "parent_id": null,
+      "description_scope": "This request encompasses records maintained by all offices of the Department of State.",
       "agency": {
         "agency_name": "Department of State",
         "agency_foia_officer": "FOIA Officer",
@@ -112,12 +224,14 @@
       },
       "submission": {
         "portal_url": "https://foia.state.gov/",
-        "email": "",
+        "email": "FOIARequest@state.gov",
         "guidelines": "The State Department accepts requests through its FOIA portal. Processing times vary; complex requests may take longer. You may also submit via FOIA.gov."
       }
     },
     {
       "_id": "epa",
+      "parent_id": null,
+      "description_scope": "This request encompasses records maintained by all offices of the Environmental Protection Agency.",
       "agency": {
         "agency_name": "Environmental Protection Agency (EPA)",
         "agency_foia_officer": "FOIA Public Liaison",
@@ -136,6 +250,8 @@
     },
     {
       "_id": "hhs",
+      "parent_id": null,
+      "description_scope": "This request encompasses headquarters-level records maintained by the Office of the Secretary and central management offices of the Department of Health and Human Services.",
       "agency": {
         "agency_name": "Department of Health and Human Services (HHS)",
         "agency_foia_officer": "FOIA Officer",
@@ -153,7 +269,69 @@
       }
     },
     {
+      "_id": "cdc",
+      "parent_id": "hhs",
+      "description_scope": "This request encompasses records maintained by the Centers for Disease Control and Prevention (CDC), a component of the Department of Health and Human Services.",
+      "agency": {
+        "agency_name": "Centers for Disease Control and Prevention (CDC)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "1600 Clifton Road NE, MS H09-4",
+        "agency_address_line2": "",
+        "agency_city": "Atlanta",
+        "agency_state": "GA",
+        "agency_postal_code": "30329-4027"
+      },
+      "submission": {
+        "portal_url": "https://www.cdc.gov/foia/",
+        "email": "foiarequests@cdc.gov",
+        "guidelines": "CDC accepts FOIA requests by mail or through FOIA.gov. Include specific program names, dates, or study references if applicable."
+      }
+    },
+    {
+      "_id": "fda",
+      "parent_id": "hhs",
+      "description_scope": "This request encompasses records maintained by the Food and Drug Administration (FDA), a component of the Department of Health and Human Services.",
+      "agency": {
+        "agency_name": "Food and Drug Administration (FDA)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "Division of Freedom of Information",
+        "agency_address_line2": "12420 Parklawn Drive, Element Building, Room 1050",
+        "agency_city": "Rockville",
+        "agency_state": "MD",
+        "agency_postal_code": "20857"
+      },
+      "submission": {
+        "portal_url": "https://www.fda.gov/regulatory-information/freedom-information",
+        "email": "FDAFOIA@fda.hhs.gov",
+        "guidelines": "FDA accepts FOIA requests by mail or through FOIA.gov. Include product names, application numbers, or docket numbers if applicable."
+      }
+    },
+    {
+      "_id": "nih",
+      "parent_id": "hhs",
+      "description_scope": "This request encompasses records maintained by the National Institutes of Health (NIH), a component of the Department of Health and Human Services.",
+      "agency": {
+        "agency_name": "National Institutes of Health (NIH)",
+        "agency_foia_officer": "FOIA Officer",
+        "agency_address": "true",
+        "agency_address_line1": "Building 31, Room 5B-35",
+        "agency_address_line2": "9000 Rockville Pike",
+        "agency_city": "Bethesda",
+        "agency_state": "MD",
+        "agency_postal_code": "20892"
+      },
+      "submission": {
+        "portal_url": "https://www.nih.gov/institutes-nih/nih-office-director/office-communications-public-liaison/freedom-information-act-office",
+        "email": "nihfoia@mail.nih.gov",
+        "guidelines": "NIH accepts FOIA requests by mail or through FOIA.gov. Specify the NIH institute or center, grant numbers, or study titles if applicable."
+      }
+    },
+    {
       "_id": "ed",
+      "parent_id": null,
+      "description_scope": "This request encompasses records maintained by all offices of the Department of Education.",
       "agency": {
         "agency_name": "Department of Education",
         "agency_foia_officer": "FOIA Service Center",
@@ -166,12 +344,14 @@
       },
       "submission": {
         "portal_url": "https://www2.ed.gov/policy/gen/leg/foia/",
-        "email": "",
+        "email": "EDFOIAManager@ed.gov",
         "guidelines": "The Department of Education accepts FOIA requests by mail or through FOIA.gov. Include specific program names or offices when possible."
       }
     },
     {
       "_id": "omb",
+      "parent_id": null,
+      "description_scope": "This request encompasses records maintained by all offices of the Office of Management and Budget.",
       "agency": {
         "agency_name": "Office of Management and Budget (OMB)",
         "agency_foia_officer": "FOIA Officer",
@@ -184,12 +364,14 @@
       },
       "submission": {
         "portal_url": "https://www.whitehouse.gov/omb/foia/",
-        "email": "foia@omb.eop.gov",
+        "email": "OMBFOIA@omb.eop.gov",
         "guidelines": "OMB requires requests to specify date ranges and describe records with reasonable detail. You may also submit via FOIA.gov."
       }
     },
     {
       "_id": "usds",
+      "parent_id": null,
+      "description_scope": "This request encompasses records maintained by all offices of the U.S. DOGE Service.",
       "agency": {
         "agency_name": "U.S. DOGE Service (USDS)",
         "agency_foia_officer": "FOIA Officer",
@@ -210,9 +392,10 @@
 
   "request_defaults": {
     "today_date": "February 7, 2026",
-    "description": "All FOIA request response logs for the previous quarter (October 1, 2025, through December 31, 2025), including but not limited to: the date each request was received, the requester's name or tracking number, a summary or description of the records requested, the date of the agency's response, the disposition of each request (e.g., full grant, partial grant, full denial, referral, withdrawal), any FOIA exemptions cited in partial or full denials, and the number of pages or records released, withheld, or referred.",
-    "preferred_format": "electronic PDF",
+    "description": "All FOIA case tracking logs, FOIA processing records, or any equivalent records maintained in the agency's case management system for the previous quarter (October 1, 2025, through December 31, 2025), including but not limited to: the date each request was received, the tracking number or unique request identifier, a summary or description of the records requested, the date of the agency's response, the disposition of each request (e.g., full grant, partial grant, full denial, referral, withdrawal), any FOIA exemptions cited in partial or full denials, and the number of pages or records released, withheld, or referred. {{description_scope}}",
+    "preferred_format": "native electronic format (e.g., CSV, Excel, or PDF)",
     "fee_category": "",
+    "fee_cap": "$25",
     "fee_waiver_justification": "This request is made in the public interest to promote government transparency and accountability.",
     "requester_name": "David Simon",
     "requester_address_line1": "",
@@ -220,7 +403,7 @@
     "requester_city": "",
     "requester_state": "",
     "requester_postal_code": "",
-    "requester_phone": "",
+    "requester_phone": "(555) 555-0100",
     "ungovr_email": "david@ungovr.org"
   }
 }
